@@ -1,0 +1,29 @@
+{
+    "name": "lekoala/silverstripe-foundation-emails",
+    "description": "Better emails layout for SilverStripe",
+    "type": "silverstripe-module",
+    "keywords": [
+        "silverstripe",
+        "foundation",
+        "emails",
+        "module",
+        "cms"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "LeKoala",
+            "email": "thomas@lekoala.be"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.8",
+        "silverstripe/framework": "~3.1"
+    },
+    "extra": {
+        "installer-name": "foundation-emails"
+    },
+    "support": {
+        "issues": "https://github.com/lekoala/silverstripe-foundation-emails/issues"
+    }
+}

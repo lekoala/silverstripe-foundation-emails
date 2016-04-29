@@ -1,0 +1,4 @@
+---
+Name: foundation-emails
+After: 'framework/*','cms/*'
+---
