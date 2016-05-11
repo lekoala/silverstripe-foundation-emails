@@ -37,8 +37,27 @@ class EmailViewerTask extends BuildTask
         DB::alteration_message("You can set the locale by passing ?locale=fr_FR. Current locale is ".i18n::get_locale());
         DB::alteration_message("You can inline css styles by passing ?inline=1");
 
+        $refl            = new ReflectionClass($email);
+        $constructorOpts = $refl->getConstructor()->getParameters();
+
+        $args = array();
+
+        if (!empty($constructorOpts)) {
+            /* @var $opt ReflectionParameter  */
+            foreach ($constructorOpts as $opt) {
+                $type = $opt->getClass()->getName();
+                if (class_exists($type) && in_array($type, ClassInfo::subclassesFor('DataObject'))) {
+                    $record = $type::get()->first();
+                    if (!$record) {
+                        $record = new $type;
+                    }
+                    $args[] = $record;
+                }
+            }
+        }
+
         /* @var $e Email */
-        $e = new $email();
+        $e = $refl->newInstanceArgs($args);
 
         // For a generic email, we should set some content...
         if ($email == 'Email') {
