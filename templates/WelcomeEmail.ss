@@ -26,7 +26,7 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <% include FoundationEmailLayout %>
+                                        <% include FoundationEmailWelcomeBody %>
                                         <% include FoundationEmailFooter %>
                                     </td>
                                 </tr>

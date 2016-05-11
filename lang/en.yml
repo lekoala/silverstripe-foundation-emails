@@ -1,0 +1,17 @@
+en:
+  ChangePasswordEmail_ss:
+    CHANGEPASSWORDTEXT2: 'You can now use the following credentials to log in:'
+    EMAIL: Email
+    HELLO: Hi
+    PASSWORD: Password
+  ForgotPasswordEmail_ss:
+    HELLO: Hi
+    TEXT1: 'Here is your'
+    TEXT2: 'password reset link'
+    TEXT3: for
+    TEXTBTN: 'Reset your password'
+  WelcomeEmail:
+    DEFAULT_TEXT: 'We''re really happy to have you! If you have any questions simply reply to this email and I''d be more than happy to chat. :)'
+    HI: Hi
+    SUBJECT: 'Welcome to {Website}'
+    WELCOME: 'Thank you for signing up for'

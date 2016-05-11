@@ -1,0 +1,18 @@
+fr:
+  ChangePasswordEmail_ss:
+    CHANGEPASSWORDTEXT1: 'Vous avez modifié votre mot de passe pour'
+    CHANGEPASSWORDTEXT2: 'Vous pouvez maintenant utiliser les identifiants suivants pour vous connecter&nbsp;:'
+    EMAIL: Email
+    HELLO: Salut
+    PASSWORD: Mot de passe
+  ForgotPasswordEmail_ss:
+    HELLO: Salut
+    TEXT1: 'Voici votre'
+    TEXT2: 'lien de réinitialisation de mot de passe'
+    TEXT3: pour
+    TEXTBTN: 'Réinitialisez votre mot de passe'
+  WelcomeEmail:
+    DEFAULT_TEXT: 'Nous sommes très heureux de vous voir parmi nous! Si vous avez la moindre question, n''hésitez pas à répondre à cet email et je serai ravi d''y répondre. :)'
+    HI: Salut
+    SUBJECT: 'Bienvenue sur {Website}'
+    WELCOME: 'Merci de vous être inscrit à '

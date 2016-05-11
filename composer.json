@@ -23,6 +23,11 @@
     "extra": {
         "installer-name": "foundation-emails"
     },
+    "suggest": {
+        "pelago/emogrifier": "Inline styles for your emails",
+        "lekoala/silverstripe-sparkpost": "Use SparkPost to send your emails",
+        "lekoala/silverstripe-email-templates": "Email templates editables from the cms"
+    },
     "support": {
         "issues": "https://github.com/lekoala/silverstripe-foundation-emails/issues"
     }

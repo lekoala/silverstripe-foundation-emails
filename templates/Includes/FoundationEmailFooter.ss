@@ -55,7 +55,7 @@
                                                     <table>
                                                         <tr>
                                                             <td class="text-center">
-                                                                <a href=$SiteConfig.GooglePlusLink" align="center" class="float-center">Google+</a>
+                                                                <a href="$SiteConfig.GooglePlusLink" align="center" class="float-center">Google+</a>
                                                             </td>
                                                         </tr>
                                                     </table>

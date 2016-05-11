@@ -14,6 +14,8 @@
                                                     <th>
                                                         <% if $SiteConfig.Logo %>
                                                         <img src="$SiteConfig.Logo.SetHeight(50).URL" alt="" style="max-width:200px" />
+                                                        <% else %>
+                                                        $SiteConfig.Title
                                                         <% end_if %>
                                                     </th>
                                                 </tr>
