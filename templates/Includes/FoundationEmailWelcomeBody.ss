@@ -36,6 +36,14 @@
                     </table>
                     <h4><%t WelcomeEmail.WELCOME 'Thank you for signing up for' %> {$SiteConfig.Title}.</h4>
                     <p><%t WelcomeEmail.DEFAULT_TEXT 'We\'re really happy to have you! If you have any questions simply reply to this email and I\'d be more than happy to chat. :)' %></p>
+
+                    <% if $ValidationLink %>
+                    <p><%t WelcomeEmail.PLEASEVALIDATE 'To login on our website, please' %> <a href="$ValidationLink"><%t WelcomeEmail.VALIDATELINK 'validate your email address' %></a>.</p>
+
+                    <p><%t WelcomeEmail.IFLINKFAILS 'If the above link doesn\'t work, please copy and paste the line below into your browser\'s navigation bar' %>.</p>
+
+                    <p>$ValidationLink</p>
+                    <% end_if %>
             </th>
             <th class="expander"></th>
         </tr>

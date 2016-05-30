@@ -45,6 +45,10 @@ class EmailViewerTask extends BuildTask
         if (!empty($constructorOpts)) {
             /* @var $opt ReflectionParameter  */
             foreach ($constructorOpts as $opt) {
+                $cl = $opt->getClass();
+                if(!$cl) {
+                    continue;
+                }
                 $type = $opt->getClass()->getName();
                 if (class_exists($type) && in_array($type, ClassInfo::subclassesFor('DataObject'))) {
                     $record = $type::get()->first();
