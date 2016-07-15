@@ -2,7 +2,7 @@
 
 /**
  * A generic welcome email
- * 
+ *
  * @author LeKoala <thomas@lekoala.be>
  */
 class WelcomeEmail extends Email
@@ -16,7 +16,7 @@ class WelcomeEmail extends Email
 
         $this->subject = _t('WelcomeEmail.SUBJECT', "Welcome to {Website}",
             'Email subject',
-            array('Website' => SiteConfig::current_site_config()->Title));
+            ['Website' => SiteConfig::current_site_config()->Title]);
 
         $this->to = $member->Email;
         if ($member->FirstName) {
@@ -26,10 +26,10 @@ class WelcomeEmail extends Email
 
         parent::__construct();
 
-        $this->populateTemplate(new ArrayData(array(
+        $this->populateTemplate(new ArrayData([
             'Member' => $member ? $member : Member::currentUser(),
             'AbsoluteWebsiteLink' => $link,
             'WebsiteLink' => $host,
-        )));
+        ]));
     }
 }

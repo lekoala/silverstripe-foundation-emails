@@ -1,4 +1,12 @@
 ---
 Name: foundation-emails
-After: 'framework/*','cms/*'
+After:
+  - 'framework/*'
+  - 'cms/*'
 ---
+FoundationEmails:
+  grid: 12
+  components: []
+  aliases:
+    - cols : columns
+    - btn : button

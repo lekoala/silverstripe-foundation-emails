@@ -11,7 +11,7 @@ class EmailViewerTask extends BuildTask
     protected $description = 'Helps you previewing and testing emails';
 
     /**
-     * 
+     *
      * @param SS_HTTPRequest $request
      */
     public function run($request)
@@ -40,17 +40,18 @@ class EmailViewerTask extends BuildTask
         $refl            = new ReflectionClass($email);
         $constructorOpts = $refl->getConstructor()->getParameters();
 
-        $args = array();
+        $args = [];
 
         if (!empty($constructorOpts)) {
             /* @var $opt ReflectionParameter  */
             foreach ($constructorOpts as $opt) {
                 $cl = $opt->getClass();
-                if(!$cl) {
+                if (!$cl) {
                     continue;
                 }
                 $type = $opt->getClass()->getName();
-                if (class_exists($type) && in_array($type, ClassInfo::subclassesFor('DataObject'))) {
+                if (class_exists($type) && in_array($type,
+                        ClassInfo::subclassesFor('DataObject'))) {
                     $record = $type::get()->first();
                     if (!$record) {
                         $record = new $type;
@@ -67,12 +68,15 @@ class EmailViewerTask extends BuildTask
         if ($email == 'Email') {
             $e->setSubject("Generic email");
             $e->setBody("<p class='lead'>Phasellus ultrices nulla quis nibh. Quisque a lectus.</p><p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>");
-            $e->populateTemplate([
-                'Callout' => "<ol>
+
+            $image = Image::get()->first();
+
+            $data = [
+                'Callout' => '<ol>
    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
    <li>Aliquam tincidunt mauris eu risus.</li>
    <li>Vestibulum auctor dapibus neque.</li>
-</ol>",
+</ol>',
                 'Sidebar' => '<nav>
 	<ul>
 		<li><a href="#">Home</a></li>
@@ -80,11 +84,16 @@ class EmailViewerTask extends BuildTask
 		<li><a href="#">Clients</a></li>
 		<li><a href="#">Contact Us</a></li>
 	</ul>
-</nav>',
-                'HeroImage' => Image::get()->first()
-            ]);
+</nav>'
+            ];
+            if ($image) {
+                $data['HeroImage'] = $image;
+            }
+            $e->populateTemplate($data);
         }
-        $e->populateTemplate(Member::currentUser());
+        if (Member::currentUserID()) {
+            $e->populateTemplate(Member::currentUser());
+        }
         $e->debug(); // Call debug to trigger parseVariables
 
         if ($inline) {

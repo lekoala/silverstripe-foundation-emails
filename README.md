@@ -2,7 +2,7 @@ SilverStripe Foundation Emails module
 ==================
 Replace the default html template by one made with [Foundation Emails] (http://foundation.zurb.com/emails/docs/css-guide.html).
 
-The email templates use zurb/foundation-emails (v 2.1) to provide a consistent markup.
+The email templates use zurb/foundation-emails (v 2.2.1) to provide a consistent markup.
 
 Expanded generic emails
 ==================
