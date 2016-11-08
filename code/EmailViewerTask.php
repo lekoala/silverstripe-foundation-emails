@@ -34,8 +34,16 @@ class EmailViewerTask extends BuildTask
             i18n::set_locale($locale);
         }
 
-        DB::alteration_message("You can set the locale by passing ?locale=fr_FR. Current locale is ".i18n::get_locale());
-        DB::alteration_message("You can inline css styles by passing ?inline=1");
+        if ($locale) {
+            DB::alteration_message("Locale is set to ".$locale, "created");
+        } else {
+            DB::alteration_message("You can set the locale by passing ?locale=fr_FR. Current locale is ".i18n::get_locale());
+        }
+        if ($inline) {
+            DB::alteration_message("Css are inlined", "created");
+        } else {
+            DB::alteration_message("You can inline css styles by passing ?inline=1");
+        }
 
         $refl            = new ReflectionClass($email);
         $constructorOpts = $refl->getConstructor()->getParameters();
@@ -91,8 +99,14 @@ class EmailViewerTask extends BuildTask
             }
             $e->populateTemplate($data);
         }
+
         if (Member::currentUserID()) {
-            $e->populateTemplate(Member::currentUser());
+            $member = Member::currentUser();
+        } else {
+            $member = Member::get()->sort('RAND()')->first();
+        }
+        if ($member) {
+            $e->populateTemplate($member);
         }
         $e->debug(); // Call debug to trigger parseVariables
 
