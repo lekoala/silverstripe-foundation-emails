@@ -19,6 +19,7 @@ class EmailViewerTask extends BuildTask
         $email  = $request->getVar('email');
         $locale = $request->getVar('locale');
         $inline = $request->getVar('inline');
+        $to     = $request->getVar('to');
 
         if (!$email) {
             $emailClasses = ClassInfo::subclassesFor('Email');
@@ -44,6 +45,19 @@ class EmailViewerTask extends BuildTask
         } else {
             DB::alteration_message("You can inline css styles by passing ?inline=1");
         }
+        $member = null;
+        if ($to) {
+            $member = Member::get()->filter('Email', $to)->first();
+            if ($member && $member->ID) {
+                DB::alteration_message("Email sent to ".$member->Email,
+                    'created');
+            } else {
+                $member = null;
+                DB::alteration_message("Member not found", "error");
+            }
+        } else {
+            DB::alteration_message("You can send this email by passing ?to=email_of_the@member.com");
+        }
 
         $refl            = new ReflectionClass($email);
         $constructorOpts = $refl->getConstructor()->getParameters();
@@ -60,7 +74,14 @@ class EmailViewerTask extends BuildTask
                 $type = $opt->getClass()->getName();
                 if (class_exists($type) && in_array($type,
                         ClassInfo::subclassesFor('DataObject'))) {
-                    $record = $type::get()->first();
+
+                    // We can get record based on an ID passed in the URL
+                    $recordID = $request->getVar($type.'ID');
+                    if ($recordID) {
+                        $record = $type::get()->byID($recordID);
+                    } else {
+                        $record = $type::get()->sort('RAND()')->first();
+                    }
                     if (!$record) {
                         $record = new $type;
                     }
@@ -100,10 +121,12 @@ class EmailViewerTask extends BuildTask
             $e->populateTemplate($data);
         }
 
-        if (Member::currentUserID()) {
-            $member = Member::currentUser();
-        } else {
-            $member = Member::get()->sort('RAND()')->first();
+        if (!$member) {
+            if (Member::currentUserID()) {
+                $member = Member::currentUser();
+            } else {
+                $member = Member::get()->sort('RAND()')->first();
+            }
         }
         if ($member) {
             $e->populateTemplate($member);
@@ -112,16 +135,32 @@ class EmailViewerTask extends BuildTask
 
         if ($inline) {
             if (!class_exists("\\Pelago\\Emogrifier")) {
-                throw new Exception("You must run composer require pelago/emogrifier:@dev");
+                throw new Exception("You must run composer require pelago/emogrifier");
             }
             $emogrifier = new \Pelago\Emogrifier();
             $emogrifier->setHtml($e->body);
             $emogrifier->disableInvisibleNodeRemoval();
+            $emogrifier->enableCssToHtmlMapping();
             $body       = $emogrifier->emogrify();
+
+            // Ugly hack to avoid gmail reordering your padding
+            $body = str_replace('padding: 0;', 'padding-top: 0; padding-bottom: 0; padding-right: 0; padding-left: 0;', $body);
+
+            $e->setBody($body);
         } else {
             $body = $e->body;
         }
 
+        if ($member && $to) {
+            $e->setTo($member->Email);
+            $result = $e->send();
+            echo '<hr/>';
+            if ($result) {
+                echo '<span style="color:green">Email sent</span>';
+            } else {
+                echo '<span style="color:red">Failed to send email</span>';
+            }
+        }
 
         echo '<hr/><center>Subject : '.$e->subject.'</center>';
         echo '<hr/>';

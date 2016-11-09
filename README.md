@@ -63,6 +63,10 @@ This task allow you to select any subclass of the Email class and see its html (
 
 You can also set the locale and inline styles (require pelago/emogrifier) for better testing.
 
+If your emails require constructor arguments that are DataObjects, random records
+from your database will be injected. If you want to inject specific records, pass
+ClassNameID=YourID as GET parameters (for instance MemberID=5).
+
 Compatibility
 ==================
 Tested with 3.x
