@@ -143,9 +143,6 @@ class EmailViewerTask extends BuildTask
             $emogrifier->enableCssToHtmlMapping();
             $body       = $emogrifier->emogrify();
 
-            // Ugly hack to avoid gmail reordering your padding
-            $body = str_replace('padding: 0;', 'padding-top: 0; padding-bottom: 0; padding-right: 0; padding-left: 0;', $body);
-
             $e->setBody($body);
         } else {
             $body = $e->body;
