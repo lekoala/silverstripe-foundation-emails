@@ -16,10 +16,11 @@ class EmailViewerTask extends BuildTask
      */
     public function run($request)
     {
-        $email  = $request->getVar('email');
-        $locale = $request->getVar('locale');
-        $inline = $request->getVar('inline');
-        $to     = $request->getVar('to');
+        $email    = $request->getVar('email');
+        $locale   = $request->getVar('locale');
+        $template = $request->getVar('template');
+        $inline   = $request->getVar('inline');
+        $to       = $request->getVar('to');
 
         if (!$email) {
             $emailClasses = ClassInfo::subclassesFor('Email');
@@ -27,6 +28,10 @@ class EmailViewerTask extends BuildTask
             foreach ($emailClasses as $class) {
                 $link = '/dev/tasks/EmailViewerTask?email='.$class;
                 DB::alteration_message("<a href='$link'>$class</a>");
+                if ($class == 'Email') {
+                    DB::alteration_message("<a href='$link&template=GenericEmail_ceej'>$class (ceej styles)</a>");
+                    DB::alteration_message("<a href='$link&template=GenericEmail_vision'>$class (vision styles)</a>");
+                }
             }
             return;
         }
@@ -52,8 +57,11 @@ class EmailViewerTask extends BuildTask
                 DB::alteration_message("Email sent to ".$member->Email,
                     'created');
             } else {
-                $member = null;
-                DB::alteration_message("Member not found", "error");
+                $member = new Member();
+                $member->Email = $to;
+                $member->FirstName = 'John';
+                $member->Surname = 'Smith';
+                DB::alteration_message("A temporary member has been created with email " . $member->Email, "changed");
             }
         } else {
             DB::alteration_message("You can send this email by passing ?to=email_of_the@member.com");
@@ -93,18 +101,23 @@ class EmailViewerTask extends BuildTask
         /* @var $e Email */
         $e = $refl->newInstanceArgs($args);
 
+        if ($template) {
+            $e->setTemplate($template);
+        }
+
         // For a generic email, we should set some content...
         if ($email == 'Email') {
             $e->setSubject("Generic email");
 
             $body = "<p class='lead'>Phasellus ultrices nulla quis nibh. Quisque a lectus.</p><p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>";
             $body .= FoundationEmails::button('Click here', '#', 'brand');
-            
+
             $e->setBody($body);
 
             $image = Image::get()->sort('RAND()')->first();
 
             $data = [
+                'PreHeader' => 'This text is only visible in your email client...',
                 'Callout' => '<h2>Quisque a lectus</h2>
 <ol>
    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
@@ -132,7 +145,17 @@ class EmailViewerTask extends BuildTask
             if (!$sc->EmailFooter) {
                 $sc->EmailFooter = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.';
             }
-
+            if (!$sc->EmailFooter2) {
+                $sc->EmailFooter2 = '© '.date('Y').' - '.$sc->Title.' - All Rights Reserved.';
+            }
+            if (!$sc->EmailFooterLinks) {
+                $sc->EmailFooterLinks = new ArrayList([
+                    ['Class' => 'twitter', 'Link' => '#', 'Label' => 'Twitter', 'Icon' => 'foundation-emails/images/icon_twitter.png'],
+                    ['Class' => 'facebook', 'Link' => '#', 'Label' => 'Facebook',
+                        'Icon' => 'foundation-emails/images/icon_facebook.png'],
+                    ['Class' => 'google', 'Link' => '#', 'Label' => 'Google', 'Icon' => 'foundation-emails/images/icon_google.png'],
+                ]);
+            }
             $e->populateTemplate($data);
         }
 

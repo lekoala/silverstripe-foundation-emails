@@ -1,3 +1,8 @@
+<% if $PreHeader %>
+<div style="display: none; font-size: 1px; line-height: 1px; max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden;">
+    $PreHeader
+</div>
+<% end_if %>
 <table class="wrapper header float-center" align="center">
     <tr>
         <td class="wrapper">
@@ -31,7 +36,7 @@
                                 <tbody>
                                     <tr>
                                         <th class="small-12 large-12 columns first last header-row">
-                                            <table>
+                                            <table class="wrapper">
                                                 <tr>
                                                     <th>
                                                         <table class="spacer"><tbody><tr><td height="'.$height.'px" style="font-size:'.$height.'px;line-height:'.$height.'px;">&#xA0;</td></tr></tbody></table>

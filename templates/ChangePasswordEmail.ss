@@ -14,41 +14,27 @@
             <tr>
                 <td class="float-center" align="center" valign="top">
                     <center>
-                        <% include FoundationEmailHeader_ceej %>
+                        <% include FoundationEmailHeader %>
                         <table class="container float-center">
                             <tbody>
                                 <tr>
                                     <td>
-                                        <table class="spacer">
-                                            <tbody>
-                                                <tr>
-                                                    <td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <table class="spacer"><tbody><tr><td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td></tr></tbody></table>
                                         <table class="row primary">
                                             <tbody>
                                                 <tr>
                                                     <th class="small-12 large-12 columns first last">
-                                                        <table>
-                                                            <tr>
-                                                                <th>
-                                                                    <p class="lead"><%t ChangePasswordEmail_ss.HELLO 'Hi' %> $FirstName,</p>
+                                                        <p class="lead"><%t ChangePasswordEmail_ss.HELLO 'Hi' %> $FirstName,</p>
 
-                                                                    <p>
-                                                                        <%t ChangePasswordEmail_ss.CHANGEPASSWORDTEXT1 'You changed your password for' is 'for a url' %> {$SiteConfig.Title}.<br />
-                                                                        <%t ChangePasswordEmail_ss.CHANGEPASSWORDTEXT2 'You can now use the following credentials to log in:' %>
-                                                                    </p>
+                                                        <p>
+                                                            <%t ChangePasswordEmail_ss.CHANGEPASSWORDTEXT1 'You changed your password for' is 'for a url' %> {$SiteConfig.Title}.<br />
+                                                            <%t ChangePasswordEmail_ss.CHANGEPASSWORDTEXT2 'You can now use the following credentials to log in:' %>
+                                                        </p>
 
-                                                                    <p>
-                                                                        <%t ChangePasswordEmail_ss.EMAIL 'Email' %>: $Email<br />
-                                                                        <%t ChangePasswordEmail_ss.PASSWORD 'Password' %>: $CleartextPassword
-                                                                    </p>
-
-                                                                </th>
-                                                                <th class="expander"></th>
-                                                            </tr>
-                                                        </table>
+                                                        <p>
+                                                            <%t ChangePasswordEmail_ss.EMAIL 'Email' %>: $Email<br />
+                                                            <%t ChangePasswordEmail_ss.PASSWORD 'Password' %>: $CleartextPassword
+                                                        </p>
                                                     </th>
                                                 </tr>
                                             </tbody>

@@ -1,3 +1,4 @@
+<table class="spacer"><tbody><tr><td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td></tr></tbody></table>
 <table class="row primary">
     <tbody>
         <tr>
@@ -60,16 +61,7 @@
 <% end_if %>
 
 <% if SecondaryCallout %>
-<table class="wrapper secondary">
-    <tbody>
-        <tr>
-            <td>
-               <table class="spacer"><tbody><tr><td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td></tr></tbody></table>
-            </td>
-        </tr>
-    </tbody>
-</table> <!-- /secondary -->
-<table class="row callout-secondary border-radius">
+<table class="row callout-secondary">
     <tbody>
         <tr>
             <td class="wrapper wrapper-inner text-center">

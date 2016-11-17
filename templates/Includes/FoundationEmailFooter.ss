@@ -8,7 +8,7 @@
                     <tr>
                         <% if $SiteConfig.EmailFooterLinks %>
                         <th class="small-12 large-6 columns first">
-                            <table>
+                            <table class="wrapper">
                                 <tr>
                                     <td class="text-center">
                                         <% loop $SiteConfig.EmailFooterLinks %>
@@ -32,7 +32,7 @@
                             </table>
                         </th>
                         <th class="small-12 large-6 columns last">
-                            <table>
+                            <table class="wrapper">
                                 <tr>
                                     <td class="footer-text">
                                         $SiteConfig.EmailFooter
@@ -42,7 +42,7 @@
                         </th>
                         <% else %>
                         <th class="small-12 large-12 columns last">
-                            <table>
+                            <table class="wrapper">
                                 <tr>
                                     <td class="footer-text text-center">
                                         $SiteConfig.EmailFooter

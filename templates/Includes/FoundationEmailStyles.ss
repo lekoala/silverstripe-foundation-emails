@@ -5,33 +5,51 @@
 
     /* Layout styles */
 
+    @import url('https://fonts.googleapis.com/css?family=Lato');
+
+    body,
+    table.body,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    p,
+    td,
+    th,
+    a,
+    table.button table td a{
+        font-family:'Lato', Helvetica, Arial, sans-serif;
+    }
+
+    th.columns.no-bottom {
+        padding-bottom:0;
+    }
+
     .wrapper-inner {
-        padding:16px;
+        padding-top:16px;
+        padding-right:16px;
+        padding-bottom:16px;
+        padding-left:16px;
     }
 
     .white-color {
         color:#fff;
     }
 
-    a {
-        color:#2199e8; /* Replace with your brand color */
+    .header-white {
+        background:#fff;
+        border-bottom: 1px solid #dddddd;
+    }
+    .footer-white {
+        background:#fff;
+        border-top: 1px solid #dddddd;
     }
 
     .header-row {
         background:#fff;
         border-radius: 4px 4px 0px 0px; 
-    }
-
-    .header {
-        background: #333; /* Replace with your brand color */
-    }
-
-    table.button.brand table td {
-        background: #333; 
-        border-color: #333;
-    }
-    table.button.brand table td a {
-        background: #333; 
     }
 
     .header .columns {
@@ -75,26 +93,58 @@
         border-color: #DB4A39;
     }
 
-    .wrapper.secondary {
-        background: #f3f3f3; /* This should match the background color of table.body */
-    }
-
     .callout-negative {
         background: #111;
     }
+
+    .footer-links {
+        background:#292828;
+    }
+
     .callout-negative h1, .callout-negative h2, .callout-negative h3 {
         color:#fff;
     }
+
     .callout-negative-content {
         color:#999;
     }
 
-    .callout-secondary {
-        background:#ddd; /* Replace with a faded color of your brand */
-        border-radius: 4px; 
-    }
-
     .text-center p {
         text-align: center;
+    }
+
+    .border-radius {
+        border-radius: 4px;
+    }
+
+    /* Theme */
+
+    table.body {
+        background: #f3f3f3; 
+    }
+
+    .wrapper.secondary {
+        background: #f3f3f3; /* This should match the background color of table.body */
+    }
+
+    a {
+        color:#2199e8; /* Replace with your brand color */
+    }
+
+    .header {
+        background: #333; /* Replace with your brand color */
+    }
+
+    table.button.brand table td {
+        background: #333; 
+        border-color: #333;
+    }
+
+    table.button.brand table td a {
+        background: #333; 
+    }
+
+    .callout-secondary {
+        background:#ddd; /* Replace with a faded color of your brand */
     }
 </style>

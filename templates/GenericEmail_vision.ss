@@ -15,13 +15,13 @@
             <tr>
                 <td class="float-center" align="center" valign="top">
                     <center>
-                        <% include FoundationEmailHeader %>
+                        <% include FoundationEmailHeader_vision %>
                         <table class="container float-center">
                             <tbody>
                                 <tr>
                                     <td>
-                                        <% include FoundationEmailLayout %>
-                                        <% include FoundationEmailFooter %>
+                                        <% include FoundationEmailLayout_vision %>
+                                        <% include FoundationEmailFooter_vision %>
                                     </td>
                                 </tr>
                             </tbody>

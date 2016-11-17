@@ -28,7 +28,7 @@ A default Header and Footer is provided:
 - The footer display the social medias links and a user defined text in the SiteConfig
 
 In the footer, social medias links should be provided through the EmailFooterLinks method
-on the SiteConfig. Each item consist of a : Class, Link and Label.
+on the SiteConfig. Each item consist of a : Class, Link, Label and Icon.
 
 Make it your own styles
 ==================
@@ -40,10 +40,7 @@ To define your base styles, override FoundationEmailStyles.ss.
 
 To define your own headers and footers, override FoundationEmailFooter and FoundationEmailHeader.
 
-By default, the email template is using inspired by Litmus "ceej" templates. These
-includes are suffixed with "ceej". If you want to revert to stock templates (those
-provided by default by Foundation), you can simply change your layout and use the
-templates without the suffix.
+Two other styles are provided : "vision" and "ceej". Feel free to use the one you like the most.
 
 Consistent ChangePassword and ForgotPassword templates
 ==================

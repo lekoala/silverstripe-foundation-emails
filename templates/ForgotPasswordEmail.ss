@@ -14,44 +14,31 @@
             <tr>
                 <td class="float-center" align="center" valign="top">
                     <center>
-                        <% include FoundationEmailHeader_ceej %>
+                        <% include FoundationEmailHeader %>
                         <table class="container float-center">
                             <tbody>
                                 <tr>
                                     <td>
-                                        <table class="spacer">
-                                            <tbody>
-                                                <tr>
-                                                    <td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
+                                        <table class="spacer"><tbody><tr><td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td></tr></tbody></table>
                                         <table class="row primary">
                                             <tbody>
                                                 <tr>
                                                     <th class="small-12 large-12 columns first last">
-                                                        <table>
+                                                        <p class="lead"><%t ForgotPasswordEmail_ss.HELLO 'Hi' %> $FirstName,</p>
+                                                        <p><%t ForgotPasswordEmail_ss.TEXT1 'Here is your' %> <%t ForgotPasswordEmail_ss.TEXT2 'password reset link' %>  <%t ForgotPasswordEmail_ss.TEXT3 'for' %> {$SiteConfig.Title}.</p>
+                                                        </p>
+                                                        <table class="button large expand">
                                                             <tr>
-                                                                <th>
-                                                                    <p class="lead"><%t ForgotPasswordEmail_ss.HELLO 'Hi' %> $FirstName,</p>
-                                                                    <p><%t ForgotPasswordEmail_ss.TEXT1 'Here is your' %> <%t ForgotPasswordEmail_ss.TEXT2 'password reset link' %>  <%t ForgotPasswordEmail_ss.TEXT3 'for' %> {$SiteConfig.Title}.</p>
-                                                                    </p>
-                                                                    <table class="button large expand">
+                                                                <td>
+                                                                    <table>
                                                                         <tr>
                                                                             <td>
-                                                                                <table>
-                                                                                    <tr>
-                                                                                        <td>
-                                                                                            <center data-parsed=""><a href="$PasswordResetLink" align="center" class="float-center"><%t ForgotPasswordEmail_ss.TEXTBTN 'Reset your password' %></a></center>
-                                                                                        </td>
-                                                                                    </tr>
-                                                                                </table>
+                                                                                <center data-parsed=""><a href="$PasswordResetLink" align="center" class="float-center"><%t ForgotPasswordEmail_ss.TEXTBTN 'Reset your password' %></a></center>
                                                                             </td>
-                                                                            <td class="expander"></td>
                                                                         </tr>
                                                                     </table>
-                                                                </th>
-                                                                <th class="expander"></th>
+                                                                </td>
+                                                                <td class="expander"></td>
                                                             </tr>
                                                         </table>
                                                     </th>
