@@ -14,7 +14,7 @@
             <tr>
                 <td class="float-center" align="center" valign="top">
                     <center>
-                        <% include FoundationEmailHeader %>
+                        <% include FoundationEmailHeader_ceej %>
                         <table class="container float-center">
                             <tbody>
                                 <tr>

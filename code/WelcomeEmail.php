@@ -11,6 +11,8 @@ class WelcomeEmail extends Email
 
     public function __construct($member = null)
     {
+        $member = $member ? $member : Member::currentUser();
+
         $link = Director::absoluteBaseUrl();
         $host = parse_url($link, PHP_URL_HOST);
 
@@ -18,16 +20,18 @@ class WelcomeEmail extends Email
             'Email subject',
             ['Website' => SiteConfig::current_site_config()->Title]);
 
-        $this->to = $member->Email;
-        if ($member->FirstName) {
-            $name     = trim($member->FirstName.' '.$member->Surname);
-            $this->to = $name.' <'.$member->Email.'>';
+        if ($member) {
+            $this->to = $member->Email;
+            if ($member->FirstName) {
+                $name     = trim($member->FirstName.' '.$member->Surname);
+                $this->to = $name.' <'.$member->Email.'>';
+            }
         }
 
         parent::__construct();
 
         $this->populateTemplate(new ArrayData([
-            'Member' => $member ? $member : Member::currentUser(),
+            'Member' => $member,
             'AbsoluteWebsiteLink' => $link,
             'WebsiteLink' => $host,
         ]));

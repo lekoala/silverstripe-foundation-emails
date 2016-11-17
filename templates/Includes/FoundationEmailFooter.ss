@@ -1,29 +1,24 @@
 <% if $SiteConfig.EmailFooter %>
-<table class="wrapper secondary" align="center">
+<table class="wrapper footer secondary" align="center">
     <tr>
         <td class="wrapper-inner">
-            <table class="spacer">
-                <tbody>
-                    <tr>
-                        <td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td>
-                    </tr>
-                </tbody>
-            </table>
+            <table class="spacer"><tbody><tr><td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td></tr></tbody></table>
             <table class="row">
                 <tbody>
                     <tr>
+                        <% if $SiteConfig.EmailFooterLinks %>
                         <th class="small-12 large-6 columns first">
                             <table>
                                 <tr>
                                     <td class="text-center">
-                                        <% if SiteConfig.TwitterLink %>
-                                        <table class="button twitter expand">
+                                        <% loop $SiteConfig.EmailFooterLinks %>
+                                        <table class="button $Class expand">
                                             <tr>
                                                 <td>
                                                     <table>
                                                         <tr>
                                                             <td class="text-center">
-                                                                <a href="$SiteConfig.TwitterLink" align="center" class="float-center">Twitter</a>
+                                                                <a href="$Link" align="center" class="float-center">$Label</a>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -31,39 +26,7 @@
                                                 <td class="expander"></td>
                                             </tr>
                                         </table>
-                                        <% end_if %>
-                                        <% if SiteConfig.FacebookPageLink %>
-                                        <table class="button facebook expand">
-                                            <tr>
-                                                <td>
-                                                    <table>
-                                                        <tr>
-                                                            <td class="text-center">
-                                                                <a href="$SiteConfig.FacebookPageLink" align="center" class="float-center">Facebook</a>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                                <td class="expander"></td>
-                                            </tr>
-                                        </table>
-                                        <% end_if %>
-                                        <% if SiteConfig.GooglePlusLink %>
-                                        <table class="button google expand">
-                                            <tr>
-                                                <td>
-                                                    <table>
-                                                        <tr>
-                                                            <td class="text-center">
-                                                                <a href="$SiteConfig.GooglePlusLink" align="center" class="float-center">Google+</a>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
-                                                </td>
-                                                <td class="expander"></td>
-                                            </tr>
-                                        </table>
-                                        <% end_if %>
+                                        <% end_loop %>
                                     </td>
                                 </tr>
                             </table>
@@ -77,10 +40,21 @@
                                 </tr>
                             </table>
                         </th>
+                        <% else %>
+                        <th class="small-12 large-12 columns last">
+                            <table>
+                                <tr>
+                                    <td class="footer-text text-center">
+                                        $SiteConfig.EmailFooter
+                                    </td>
+                                </tr>
+                            </table>
+                        </th>
+                        <% end_if %>
                     </tr>
                 </tbody>
             </table>
         </td>
     </tr>
-</table> <!-- /secondary -->
+</table> <!-- /footer -->
 <% end_if %>

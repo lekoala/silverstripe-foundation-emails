@@ -96,16 +96,24 @@ class EmailViewerTask extends BuildTask
         // For a generic email, we should set some content...
         if ($email == 'Email') {
             $e->setSubject("Generic email");
-            $e->setBody("<p class='lead'>Phasellus ultrices nulla quis nibh. Quisque a lectus.</p><p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>");
 
-            $image = Image::get()->first();
+            $body = "<p class='lead'>Phasellus ultrices nulla quis nibh. Quisque a lectus.</p><p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>";
+            $body .= FoundationEmails::button('Click here', '#', 'brand');
+            
+            $e->setBody($body);
+
+            $image = Image::get()->sort('RAND()')->first();
 
             $data = [
-                'Callout' => '<ol>
+                'Callout' => '<h2>Quisque a lectus</h2>
+<ol>
    <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
    <li>Aliquam tincidunt mauris eu risus.</li>
    <li>Vestibulum auctor dapibus neque.</li>
-</ol>',
+</ol>
+<a href="#">Phasellus ultrices nulla</a>',
+                'SecondaryCallout' => '<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit?</p>
+<a href="#">Vestibulum auctor</a>',
                 'Sidebar' => '<nav>
 	<ul>
 		<li><a href="#">Home</a></li>
@@ -118,6 +126,13 @@ class EmailViewerTask extends BuildTask
             if ($image) {
                 $data['HeroImage'] = $image;
             }
+
+            // Let's add an email footer
+            $sc = SiteConfig::current_site_config();
+            if (!$sc->EmailFooter) {
+                $sc->EmailFooter = 'Lorem ipsum dolor sit amet, consectetuer adipiscing elit.';
+            }
+
             $e->populateTemplate($data);
         }
 

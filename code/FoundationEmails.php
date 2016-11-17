@@ -9,8 +9,21 @@ class FoundationEmails
 {
 
     /**
+     * Render a space in content
+     * 
+     * @link http://foundation.zurb.com/emails/docs/spacer.html
+     * @param int $height
+     * @return string
+     */
+    public static function spacer($height)
+    {
+        return '<table class="spacer"><tbody><tr><td height="'.$height.'px" style="font-size:'.$height.'px;line-height:'.$height.'px;">&#xA0;</td></tr></tbody></table>';
+    }
+
+    /**
      * Render a button
      *
+     * @link http://foundation.zurb.com/emails/docs/button.html
      * @param string $text
      * @param string $href
      * @param string $tableClass tiny|small|large|expanded|secondary|success|warning|alert|radius|rounded
@@ -55,6 +68,7 @@ class FoundationEmails
     /**
      * Create a callout
      *
+     * @link http://foundation.zurb.com/emails/docs/callout.html
      * @param type $content
      * @param string $calloutClass primary|secondary|success|warning|alert
      * @return string
@@ -77,6 +91,7 @@ class FoundationEmails
     /**
      * Create content in a grid. Columns will have the same size and need to be a multiple of 12.
      *
+     * @link http://foundation.zurb.com/emails/docs/grid.html
      * @param array $contentArray
      * @param bool $collapse
      * @return string
@@ -109,6 +124,7 @@ class FoundationEmails
     /**
      * Create a container
      *
+     * @link http://foundation.zurb.com/emails/docs/grid.html
      * @param string $content
      * @return string
      */
@@ -126,6 +142,7 @@ class FoundationEmails
     /**
      * Create a row
      *
+     * @link http://foundation.zurb.com/emails/docs/grid.html
      * @param string $columns
      * @param string $collapse
      * @return string
@@ -145,6 +162,7 @@ class FoundationEmails
     /**
      * Create a column
      *
+     * @link http://foundation.zurb.com/emails/docs/grid.html
      * @param string $content
      * @param int $large
      * @param int $small
@@ -170,6 +188,7 @@ class FoundationEmails
     /**
      * Parse inky markup
      *
+     * @link http://foundation.zurb.com/emails/docs/inky.html
      * @param string $markup
      * @return string
      */

@@ -5,25 +5,10 @@
                 <table>
                     <tr>
                         <th>
-                            <table class="spacer">
-                                <tbody>
-                                    <tr>
-                                        <td height="32px" style="font-size:32px;line-height:32px;">&#xA0;</td>
-                                    </tr>
-                                </tbody>
-                            </table>
                             <% if Member.Avatar %>
-                    <center data-parsed=""> 
-                        <img src="$Member.Avatar.SetWidth(200).URL" align="center" class="float-center"> 
-                    </center>
-                    <table class="spacer">
-                        <tbody>
-                            <tr>
-                                <td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <% end_if %>
+                            <center data-parsed=""><img src="$Member.Avatar.SetWidth(200).URL" align="center" class="float-center"></center>
+                            <table class="spacer"><tbody><tr><td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td></tr></tbody></table>
+                            <% end_if %>
 
                     <h2><%t WelcomeEmail.HI 'Hi' %> $Member.FirstName $Member.Surname !</h2>
 
@@ -34,7 +19,7 @@
                             </tr>
                         </tbody>
                     </table>
-                    <h4><%t WelcomeEmail.WELCOME 'Thank you for signing up for' %> {$SiteConfig.Title}.</h4>
+                    <p class="lead"><%t WelcomeEmail.WELCOME 'Thank you for signing up for' %> {$SiteConfig.Title}.</p>
                     <p><%t WelcomeEmail.DEFAULT_TEXT 'We\'re really happy to have you! If you have any questions simply reply to this email and I\'d be more than happy to chat. :)' %></p>
 
                     <% if $ValidationLink %>

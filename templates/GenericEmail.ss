@@ -2,7 +2,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <meta name="viewport" content="width=device-width"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <% base_tag %>
 
         <% include FoundationEmailStyles %>
@@ -14,19 +15,12 @@
             <tr>
                 <td class="float-center" align="center" valign="top">
                     <center>
-                        <% include FoundationEmailHeader %>
+                        <% include FoundationEmailHeader_ceej %>
                         <table class="container float-center">
                             <tbody>
                                 <tr>
                                     <td>
-                                        <table class="spacer">
-                                            <tbody>
-                                                <tr>
-                                                    <td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                        <% include FoundationEmailLayout %>
+                                        <% include FoundationEmailLayout_ceej %>
                                         <% include FoundationEmailFooter %>
                                     </td>
                                 </tr>
