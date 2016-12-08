@@ -30,6 +30,32 @@ A default Header and Footer is provided:
 In the footer, social medias links should be provided through the EmailFooterLinks method
 on the SiteConfig. Each item consist of a : Class, Link, Label and Icon.
 
+Template helpers
+==================
+
+Instead of relying on specific markup, you can also use template helpers directly
+in your email templates. For instance:
+
+```php
+$email = new Email();
+$viewer = new SSViewer('MyEmailTemplate');
+$result = $viewer->process($this);
+$email->setBody((string) $result);
+```php
+
+```html
+Dear Customer,<br/><br/>
+Please find your password reset link:<br/><br/>
+$FoundationButton('Reset your passowrd', $PasswordResetLink)
+```html
+
+Available helpers are:
+
+- FoundationSpacer
+- FoundationButton
+- FoundationCallout
+- FoundationContainer
+
 Make it your own styles
 ==================
 

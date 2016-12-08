@@ -5,8 +5,33 @@
  *
  * @author LeKoala <thomas@lekoala.be>
  */
-class FoundationEmails
+class FoundationEmails implements TemplateGlobalProvider
 {
+
+    /**
+     * @return array
+     */
+    public static function get_template_global_variables()
+    {
+        return array(
+            'FoundationSpacer' => array(
+                'method' => 'spacer',
+                'casting' => 'HTMLText',
+            ),
+            'FoundationButton' => array(
+                'method' => 'button',
+                'casting' => 'HTMLText',
+            ),
+            'FoundationCallout' => array(
+                'method' => 'callout',
+                'casting' => 'HTMLText',
+            ),
+            'FoundationContainer' => array(
+                'method' => 'container',
+                'casting' => 'HTMLText',
+            ),
+        );
+    }
 
     /**
      * Render a space in content
