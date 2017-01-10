@@ -37,10 +37,10 @@ class FoundationEmails implements TemplateGlobalProvider
      * Render a space in content
      * 
      * @link http://foundation.zurb.com/emails/docs/spacer.html
-     * @param int $height
+     * @param int $height 10 by default
      * @return string
      */
-    public static function spacer($height)
+    public static function spacer($height = '10')
     {
         return '<table class="spacer"><tbody><tr><td height="'.$height.'px" style="font-size:'.$height.'px;line-height:'.$height.'px;">&#xA0;</td></tr></tbody></table>';
     }
