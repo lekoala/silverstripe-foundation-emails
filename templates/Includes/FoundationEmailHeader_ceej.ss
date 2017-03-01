@@ -39,9 +39,9 @@
                                             <table class="wrapper">
                                                 <tr>
                                                     <th>
-                                                        <table class="spacer"><tbody><tr><td height="'.$height.'px" style="font-size:'.$height.'px;line-height:'.$height.'px;">&#xA0;</td></tr></tbody></table>
+                                                        <table class="spacer"><tbody><tr><td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td></tr></tbody></table>
                                                         <h1 class="text-center">$Subject</h1>
-                                                        <table class="spacer"><tbody><tr><td height="'.$height.'px" style="font-size:'.$height.'px;line-height:'.$height.'px;">&#xA0;</td></tr></tbody></table>
+                                                        <table class="spacer"><tbody><tr><td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td></tr></tbody></table>
                                                     </th>
                                                     <th class="expander"></th>
                                                 </tr>

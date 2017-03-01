@@ -132,7 +132,7 @@
     }
 
     .header {
-        background: #333; /* Replace with your brand color */
+        background: #ecf0f1; /* Replace with your brand color */
     }
 
     table.button.brand table td {
