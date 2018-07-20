@@ -160,7 +160,8 @@ class EmailViewerTask extends BuildTask
 
         if ($inline) {
             // We can use setBody because template has been applied
-            $e->setBody($this->inlineContent($e->body));
+            $body = $this->inlineContent($e->body);
+            $e->setBody($body);
         } else {
             $body = $e->body;
         }

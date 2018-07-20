@@ -9,7 +9,6 @@
     </head>
 
     <body>
-        <!-- <style> -->
         <table class="body" data-made-with-foundation="">
             <tr>
                 <td class="float-center" align="center" valign="top">
