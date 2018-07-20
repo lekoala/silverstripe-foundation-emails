@@ -9,9 +9,10 @@
     </head>
 
     <body>
-        <table class="body" data-made-with-foundation="">
+        <table class="body">
             <tr>
                 <td class="float-center" align="center" valign="top">
+                    <table class="spacer"><tbody><tr><td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td></tr></tbody></table>
                     <center>
                         $foundationTemplate(FoundationEmailHeader)
                         <table class="container float-center">
@@ -56,6 +57,7 @@
                             </tbody>
                         </table>
                     </center>
+                    <table class="spacer"><tbody><tr><td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td></tr></tbody></table>
                 </td>
             </tr>
         </table>

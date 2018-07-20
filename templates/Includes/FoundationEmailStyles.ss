@@ -49,7 +49,7 @@
 
     .header-row {
         background:#fff;
-        border-radius: 4px 4px 0px 0px; 
+        border-radius: 4px 4px 0px 0px;
     }
 
     .header .columns {
@@ -120,7 +120,7 @@
     /* Theme */
 
     table.body {
-        background: #f3f3f3; 
+        background: #f3f3f3;
     }
 
     .wrapper.secondary {
@@ -136,12 +136,12 @@
     }
 
     table.button.brand table td {
-        background: #333; 
+        background: #333;
         border-color: #333;
     }
 
     table.button.brand table td a {
-        background: #333; 
+        background: #333;
     }
 
     .callout-secondary {
