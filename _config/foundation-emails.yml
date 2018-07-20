@@ -1,12 +1,13 @@
 ---
 Name: foundation-emails
-After:
-  - 'framework/*'
-  - 'cms/*'
+After: '#emailconfig'
 ---
 FoundationEmails:
   grid: 12
   components: []
   aliases:
-    - cols : columns
-    - btn : button
+    - cols: columns
+    - btn: button
+SilverStripe\Control\Email\Email:
+  extensions:
+    - FoundationEmailExtension

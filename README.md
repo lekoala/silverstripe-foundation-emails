@@ -11,16 +11,14 @@ The generic email comes with a few new options:
 
 - If you define a Callout, it will be displated as a callout
 - If you define a Sidebar, a right sidebar will be displayed (ratio 7/5)
-- If you define a HeroImage (an Image object), it will be displayed below the body and before the callout 
+- If you define a HeroImage (an Image object), it will be displayed below the body and before the callout
 
-```php
-$email = new Email();
-$email->populateTemplate([
-    'Callout' => 'Here is my callout',
-    'Sidebar' => 'Here is my sidebar',
-    'HeroImage' => Image::get()->first()
-]);
-```
+    $email = new Email();
+    $email->populateTemplate([
+        'Callout' => 'Here is my callout',
+        'Sidebar' => 'Here is my sidebar',
+        'HeroImage' => Image::get()->first()
+    ]);
 
 A default Header and Footer is provided:
 
@@ -36,18 +34,14 @@ Template helpers
 Instead of relying on specific markup, you can also use template helpers directly
 in your email templates. For instance:
 
-```php
-$email = new Email();
-$viewer = new SSViewer('MyEmailTemplate');
-$result = $viewer->process($this);
-$email->setBody((string) $result);
-```php
+    $email = new Email();
+    $viewer = new SSViewer('MyEmailTemplate');
+    $result = $viewer->process($this);
+    $email->setBody((string) $result);
 
-```html
-Dear Customer,<br/><br/>
-Please find your password reset link:<br/><br/>
-$FoundationButton('Reset your passowrd', $PasswordResetLink)
-```html
+    Dear Customer,<br/><br/>
+    Please find your password reset link:<br/><br/>
+    $FoundationButton('Reset your passowrd', $PasswordResetLink)
 
 Available helpers are:
 
@@ -67,20 +61,22 @@ To define your base styles, override FoundationEmailStyles.ss.
 To define your own headers and footers, override FoundationEmailFooter and FoundationEmailHeader.
 
 Two other styles are provided : "vision" and "ceej". Feel free to use the one you like the most.
+You can select your theme by applying the following config.
+
+    FoundationEmails:
+      theme: 'vision'
 
 Consistent ChangePassword and ForgotPassword templates
 ==================
 
-These default templates have been overriden. They are not stored in the /email folder
-otherwise the framework version will be picked instead of this one.
+These default templates have been overriden.
 
-NOTE : we include a button to reset the password instead of a plain link. The translation
-is NOT provided by the framework, make sure to define one (ForgotPasswordEmail_ss.TEXTBTN)
+NOTE : we include a button to reset the password instead of a plain link.
 
 Create new emails
 ==================
 
-As explained in the [SilverStripe documentation] (https://docs.silverstripe.org/en/3.3/developer_guides/email/) you can create
+As explained in the [SilverStripe documentation] (https://docs.silverstripe.org/en/4/developer_guides/email/) you can create
 subclasses of the Email class.
 
 An example class has been provided called WelcomeEmail.
@@ -100,7 +96,7 @@ ClassNameID=YourID as GET parameters (for instance MemberID=5).
 
 Compatibility
 ==================
-Tested with 3.x
+Tested with 4.1+
 
 Maintainer
 ==================

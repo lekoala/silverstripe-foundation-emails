@@ -1,5 +1,8 @@
 <?php
 
+use SilverStripe\View\TemplateGlobalProvider;
+use SilverStripe\Core\Config\Configurable;
+
 /**
  * An html helper for Foundation Emails with or without Inky
  *
@@ -7,6 +10,17 @@
  */
 class FoundationEmails implements TemplateGlobalProvider
 {
+    use Configurable;
+
+    const THEME_NONE = 'none';
+    const THEME_CEEJ = 'ceej';
+    const THEME_VISION = 'vision';
+
+    /**
+     * @config
+     * @var string
+     */
+    private static $theme = '';
 
     /**
      * @return array
@@ -35,14 +49,14 @@ class FoundationEmails implements TemplateGlobalProvider
 
     /**
      * Render a space in content
-     * 
+     *
      * @link http://foundation.zurb.com/emails/docs/spacer.html
      * @param int $height 10 by default
      * @return string
      */
     public static function spacer($height = '10')
     {
-        return '<table class="spacer"><tbody><tr><td height="'.$height.'px" style="font-size:'.$height.'px;line-height:'.$height.'px;">&#xA0;</td></tr></tbody></table>';
+        return '<table class="spacer"><tbody><tr><td height="' . $height . 'px" style="font-size:' . $height . 'px;line-height:' . $height . 'px;">&#xA0;</td></tr></tbody></table>';
     }
 
     /**
@@ -55,17 +69,20 @@ class FoundationEmails implements TemplateGlobalProvider
      * @param string $btnClasses
      * @return string
      */
-    public static function button($text, $href, $tableClass = '',
-                                  $btnClasses = '')
-    {
+    public static function button(
+        $text,
+        $href,
+        $tableClass = '',
+        $btnClasses = ''
+    ) {
         if (!empty($tableClass)) {
-            $tableClass = ' '.$tableClass;
+            $tableClass = ' ' . $tableClass;
         }
         $isExpanded = false;
         if (strpos($tableClass, 'expand') !== false) {
             $isExpanded = true;
         }
-        $buttonStart = '<table class="button'.$tableClass.'">
+        $buttonStart = '<table class="button' . $tableClass . '">
           <tr>
             <td>
               <table>
@@ -81,31 +98,31 @@ class FoundationEmails implements TemplateGlobalProvider
         </table>';
 
         if ($isExpanded) {
-            $buttonStart = $buttonStart.'<center data-parsed="">';
-            $buttonEnd   = '</center>'.$buttonEnd;
+            $buttonStart = $buttonStart . '<center data-parsed="">';
+            $buttonEnd = '</center>' . $buttonEnd;
         }
 
-        $a = '<a href="'.$href.'" classes="'.$btnClasses.'">'.$text.'</a>';
+        $a = '<a href="' . $href . '" classes="' . $btnClasses . '">' . $text . '</a>';
 
-        return $buttonStart.$a.$buttonEnd;
+        return $buttonStart . $a . $buttonEnd;
     }
 
     /**
      * Create a callout
      *
      * @link http://foundation.zurb.com/emails/docs/callout.html
-     * @param type $content
+     * @param string $content
      * @param string $calloutClass primary|secondary|success|warning|alert
      * @return string
      */
     public static function callout($content, $calloutClass = '')
     {
         if (!empty($calloutClass)) {
-            $calloutClass = ' '.$calloutClass;
+            $calloutClass = ' ' . $calloutClass;
         }
         return '<table class="callout">
   <tr>
-    <th class="callout-inner'.$calloutClass.'">
+    <th class="callout-inner' . $calloutClass . '">
       <p>Successfully avoided Kraken. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
     </th>
     <th class="expander"></th>
@@ -140,8 +157,12 @@ class FoundationEmails implements TemplateGlobalProvider
             if ($i == $c) {
                 $classes[] = 'last';
             }
-            $columns .= self::column($content, 12 / $c, 12 / $c,
-                    implode(' ', $classes));
+            $columns .= self::column(
+                $content,
+                12 / $c,
+                12 / $c,
+                implode(' ', $classes)
+            );
         }
         return self::container(self::row($columns, $collapse));
     }
@@ -158,7 +179,7 @@ class FoundationEmails implements TemplateGlobalProvider
         return '<table align="center" class="container">
   <tbody>
     <tr>
-      <td>'.$content.'</td>
+      <td>' . $content . '</td>
     </tr>
   </tbody>
 </table>';
@@ -177,9 +198,9 @@ class FoundationEmails implements TemplateGlobalProvider
         if ($collapse) {
             $collapse = ' collapse';
         }
-        return ' <table class="row'.$collapse.'">
+        return ' <table class="row' . $collapse . '">
           <tbody>
-            <tr>'.$columns.'</tr>
+            <tr>' . $columns . '</tr>
           </tbody>
         </table>';
     }
@@ -194,16 +215,19 @@ class FoundationEmails implements TemplateGlobalProvider
      * @param string $extraClass first|last|x-offset
      * @return string
      */
-    public static function column($content, $large = 12, $small = 12,
-                                  $extraClass = '')
-    {
+    public static function column(
+        $content,
+        $large = 12,
+        $small = 12,
+        $extraClass = ''
+    ) {
         if (!empty($extraClass)) {
-            $extraClass = ' '.$extraClass;
+            $extraClass = ' ' . $extraClass;
         }
-        return '<th class="small-'.$small.' large-'.$large.' columns'.$extraClass.'">
+        return '<th class="small-' . $small . ' large-' . $large . ' columns' . $extraClass . '">
   <table>
     <tr>
-      <th>'.$content.'</th>
+      <th>' . $content . '</th>
       <th class="expander"></th>
     </tr>
   </table>
@@ -233,9 +257,9 @@ class FoundationEmails implements TemplateGlobalProvider
      */
     public static function getInky()
     {
-        $gridColumns                  = self::config()->grid;
+        $gridColumns = self::config()->grid;
         $additionalComponentFactories = self::config()->components;
-        $aliases                      = self::config()->aliases;
+        $aliases = self::config()->aliases;
 
         $inky = new Hampe\Inky\Inky($gridColumns);
         foreach ($additionalComponentFactories as $additionalComponentFactory) {

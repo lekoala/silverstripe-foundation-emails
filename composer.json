@@ -10,18 +10,19 @@
         "cms"
     ],
     "license": "MIT",
-    "authors": [
-        {
-            "name": "LeKoala",
-            "email": "thomas@lekoala.be"
-        }
-    ],
+    "authors": [{
+        "name": "LeKoala",
+        "email": "thomas@lekoala.be"
+    }],
     "require": {
-        "php": ">=5.4.8",
-        "silverstripe/framework": "~3.1"
+        "php": "~7",
+        "silverstripe/framework": "^4"
     },
     "extra": {
-        "installer-name": "foundation-emails"
+        "installer-name": "foundation-emails",
+        "expose": [
+            "images"
+        ]
     },
     "suggest": {
         "hampe/inky": "Use Inky for your html emails",

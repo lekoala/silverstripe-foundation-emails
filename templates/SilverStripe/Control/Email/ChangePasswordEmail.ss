@@ -14,7 +14,7 @@
             <tr>
                 <td class="float-center" align="center" valign="top">
                     <center>
-                        <% include FoundationEmailHeader %>
+                        $foundationTemplate(FoundationEmailHeader)
                         <table class="container float-center">
                             <tbody>
                                 <tr>
@@ -24,16 +24,21 @@
                                             <tbody>
                                                 <tr>
                                                     <th class="small-12 large-12 columns first last">
-                                                        <p class="lead"><%t ForgotPasswordEmail_ss.HELLO 'Hi' %> $FirstName,</p>
-                                                        <p><%t ForgotPasswordEmail_ss.TEXT1 'Here is your' %> <%t ForgotPasswordEmail_ss.TEXT2 'password reset link' %>  <%t ForgotPasswordEmail_ss.TEXT3 'for' %> {$SiteConfig.Title}.</p>
+                                                        <p class="lead"><%t SilverStripe\\Control\\ChangePasswordEmail_ss.HELLO 'Hi' %> $FirstName,</p>
+
+                                                        <p>
+                                                            <%t SilverStripe\\Control\\ChangePasswordEmail_ss.CHANGEPASSWORDTEXT1 'You changed your password for' is 'for a url' %> {$SiteConfig.Title}.<br />
+                                                            <%t SilverStripe\\Control\\ChangePasswordEmail_ss.CHANGEPASSWORDFOREMAIL 'The password for account with email address {email} has been changed. If you didn\'t change your password please change your password using the link below' email=$Email %>
                                                         </p>
+
+                                                        <p>
                                                         <table class="button large expand">
                                                             <tr>
                                                                 <td>
                                                                     <table>
                                                                         <tr>
                                                                             <td>
-                                                                                <center data-parsed=""><a href="$PasswordResetLink" align="center" class="float-center"><%t ForgotPasswordEmail_ss.TEXTBTN 'Reset your password' %></a></center>
+                                                                                <center data-parsed=""><a href="Security/changepassword" align="center" class="float-center"><%t SilverStripe\\Control\\ChangePasswordEmail_ss.CHANGEPASSWORDTEXT3 'Change password' %></a></center>
                                                                             </td>
                                                                         </tr>
                                                                     </table>
@@ -41,11 +46,12 @@
                                                                 <td class="expander"></td>
                                                             </tr>
                                                         </table>
+                                                        </p>
                                                     </th>
                                                 </tr>
                                             </tbody>
                                         </table> <!-- /primary -->
-                                        <% include FoundationEmailFooter %>
+                                        $foundationTemplate(FoundationEmailFooter)
                                     </td>
                                 </tr>
                             </tbody>

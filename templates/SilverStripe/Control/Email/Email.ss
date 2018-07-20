@@ -10,18 +10,17 @@
     </head>
 
     <body>
-        <!-- <style> -->
         <table class="body" data-made-with-foundation="">
             <tr>
                 <td class="float-center" align="center" valign="top">
                     <center>
-                        <% include FoundationEmailHeader %>
+                        $foundationTemplate(FoundationEmailHeader)
                         <table class="container float-center">
                             <tbody>
                                 <tr>
                                     <td>
-                                        <% include FoundationEmailLayout %>
-                                        <% include FoundationEmailFooter %>
+                                        $foundationTemplate(FoundationEmailLayout)
+                                        $foundationTemplate(FoundationEmailFooter)
                                     </td>
                                 </tr>
                             </tbody>

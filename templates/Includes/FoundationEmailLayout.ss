@@ -4,10 +4,10 @@
         <tr>
             <% if Sidebar %>
             <th class="small-12 large-7 columns first">
-                <% include FoundationEmailBody %>
+                $foundationTemplate(FoundationEmailBody)
             </th>
             <th class="sidebar small-12 large-5 columns last">
-                <% include FoundationEmailSidebar %>
+                $foundationTemplate(FoundationEmailSidebar)
             </th>
             <th class="expander"></th>
             <% else %>
@@ -15,7 +15,7 @@
                 <table>
                     <tr>
                         <th>
-                            <% include FoundationEmailBody %>
+                            $foundationTemplate(FoundationEmailBody)
                         </th>
                         <th class="expander"></th>
                     </tr>
@@ -38,7 +38,7 @@
             <table class="callout">
                 <tr>
                     <th class="callout-inner primary">
-                        $Callout
+                        $Callout.RAW
                     </th>
                     <th class="expander"></th>
                 </tr>

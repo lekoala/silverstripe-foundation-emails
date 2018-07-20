@@ -43,7 +43,7 @@
     </tr>
 </table> <!-- /footer -->
 <% end_if %>
-<% if $SiteConfig.EmailFooter2 %>
+<% if $SiteConfig.Copyright %>
 <table class="wrapper footer-white" align="center">
     <tr>
         <td>
@@ -55,7 +55,7 @@
                             <table class="wrapper">
                                 <tr>
                                     <td class="footer-text text-center">
-                                        $SiteConfig.EmailFooter2
+                                        $SiteConfig.Copyright
                                     </td>
                                 </tr>
                             </table>
