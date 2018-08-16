@@ -14,7 +14,8 @@ The generic email comes with a few new options:
 - If you define a HeroImage (an Image object), it will be displayed below the body and before the callout
 
     $email = new Email();
-    $email->populateTemplate([
+    $email->addData([
+        'EmailContent' => 'Here is my body',
         'Callout' => 'Here is my callout',
         'Sidebar' => 'Here is my sidebar',
         'HeroImage' => Image::get()->first()
@@ -28,6 +29,9 @@ A default Header and Footer is provided:
 In the footer, social medias links should be provided through the EmailFooterLinks method
 on the SiteConfig. Each item consist of a : Class, Link, Label and Icon.
 
+NOTE: do not use setBody because it will prevent the usage of the default template.
+Instead, rely on addData(['EmailContent' => $body]).
+
 Template helpers
 ==================
 
@@ -37,7 +41,7 @@ in your email templates. For instance:
     $email = new Email();
     $viewer = new SSViewer('MyEmailTemplate');
     $result = $viewer->process($this);
-    $email->setBody((string) $result);
+    $email->addData(['EmailContent' => (string) $result]);
 
     Dear Customer,<br/><br/>
     Please find your password reset link:<br/><br/>
