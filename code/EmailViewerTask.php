@@ -167,13 +167,17 @@ class EmailViewerTask extends BuildTask
         }
 
         if ($member && $to) {
-            $e->setTo($member->Email);
-            $result = $e->send();
-            echo '<hr/>';
-            if ($result) {
-                echo '<span style="color:green">Email sent</span>';
-            } else {
-                echo '<span style="color:red">Failed to send email</span>';
+            try {
+                $e->setTo($member->Email, $member->getTitle());
+                $result = $e->send();
+                echo '<hr/>';
+                if ($result) {
+                    echo '<span style="color:green">Email sent</span>';
+                } else {
+                    echo '<span style="color:red">Failed to send email</span>';
+                }
+            } catch (Exception $ex) {
+                echo '<span style="color:red">' . $ex->getMessage() . '</span>';
             }
         }
 
