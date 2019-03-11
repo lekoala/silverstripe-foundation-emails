@@ -5,6 +5,18 @@ After: '#emailconfig'
 FoundationEmails:
   grid: 12
   components: []
+  colors:
+    HeaderBorder: '#333'
+    HeaderBg: '#333'
+    HeaderLink: '#eee'
+    Header: '#fff'
+    Link: '#2199e8'
+    Background : '#f3f3f3'
+    CalloutBorder : '#ccc'
+    CalloutBg : '#ddd'
+    Callout : '#ddd'
+    BtnBg : '#333'
+    Btn : '#fff'
   aliases:
     - cols: columns
     - btn: button

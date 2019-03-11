@@ -21,7 +21,7 @@
                                                         <% if $SiteConfig.Logo %>
                                                         <center><img src="$SiteConfig.Logo.SetHeight(50).URL" alt="" style="max-width:200px"  align="center" class="float-center" /></center>
                                                         <% else %>
-                                                        <p class="white-color text-center">$SiteConfig.Title</p>
+                                                        <p class="text-center">$SiteConfig.Title</p>
                                                         <% end_if %>
                                                         <table class="spacer"><tbody><tr><td height="16px" style="font-size:16px;line-height:16px;">&#xA0;</td></tr></tbody></table>
                                                     </th>

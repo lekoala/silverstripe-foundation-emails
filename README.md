@@ -24,7 +24,7 @@ The generic email comes with a few new options:
 A default Header and Footer is provided:
 
 - The header display the logo or the title of the website
-- The footer display the social medias links and a user defined text in the SiteConfig
+- The footer display the social medias links and a user defined text in the SiteConfig (under EmailFooter)
 
 In the footer, social medias links should be provided through the EmailFooterLinks method
 on the SiteConfig. Each item consist of a : Class, Link, Label and Icon.
@@ -69,6 +69,19 @@ You can select your theme by applying the following config.
 
     FoundationEmails:
       theme: 'vision'
+
+You can also edit basic color or use extension point "updateFoundationColors".
+
+    FoundationEmails:
+        colors:
+            HeaderBg: '#333'
+            Header: '#fff'
+            Link: '#2199e8'
+            Background : '#f3f3f3'
+            CalloutBg : '#ddd'
+            Callout : '#ddd'
+            BtnBg : '#333'
+            Btn : '#fff'
 
 Consistent ChangePassword and ForgotPassword templates
 ==================

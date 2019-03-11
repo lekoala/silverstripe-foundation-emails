@@ -1,6 +1,7 @@
 <?php
 
 use SilverStripe\Core\Extension;
+use SilverStripe\View\ArrayData;
 
 class FoundationEmailExtension extends Extension
 {
@@ -20,5 +21,15 @@ class FoundationEmailExtension extends Extension
             array_unshift($templates, 'Includes/' . $template . '_' . $theme);
         }
         return $this->owner->renderWith($templates, $this->owner->getData());
+    }
+
+    /**
+     * @return ArrayData
+     */
+    public function foundationColors()
+    {
+        $colors = FoundationEmails::config()->colors;
+        $this->owner->extend('updateFoundationColors', $colors);
+        return new ArrayData($colors);
     }
 }

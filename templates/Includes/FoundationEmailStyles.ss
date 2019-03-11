@@ -34,17 +34,22 @@
         padding-left:16px;
     }
 
-    .white-color {
-        color:#fff;
-    }
-
     .header-white {
         background:#fff;
+        color:#333;
         border-bottom: 1px solid #dddddd;
     }
+    .header-white p {
+        color:#333;
+    }
+
     .footer-white {
         background:#fff;
+        color:#333;
         border-top: 1px solid #dddddd;
+    }
+    .footer-white p {
+        color:#333;
     }
 
     .header-row {
@@ -61,7 +66,6 @@
     }
 
     .header p {
-        color: #fff;
         padding-top: 15px;
     }
 
@@ -120,31 +124,46 @@
     /* Theme */
 
     table.body {
-        background: #f3f3f3;
+        background: $foundationColors.Background;
     }
 
     .wrapper.secondary {
-        background: #f3f3f3; /* This should match the background color of table.body */
+        background: $foundationColors.Background;
     }
 
-    a {
-        color:#2199e8; /* Replace with your brand color */
+    a:visited, h1 a, h1 a:visited, h2 a, h2 a:visited, h3 a, h3 a:visited, h4 a, h4 a:visited, h5 a, h5 a:visited, h6 a, h6 a:visited {
+        color: $foundationColors.Link;
     }
 
     .header {
-        background: #ecf0f1; /* Replace with your brand color */
+        background: $foundationColors.HeaderBg;
+        color: $foundationColors.Header;
+    }
+    .header p {
+        color: $foundationColors.Header;
     }
 
     table.button.brand table td {
-        background: #333;
-        border-color: #333;
+        background: $foundationColors.BtnBg;
+        border-color: $foundationColors.BtnBg;
     }
 
     table.button.brand table td a {
-        background: #333;
+        background: $foundationColors.BtnBg;
+        color: $foundationColors.Btn;
     }
 
     .callout-secondary {
-        background:#ddd; /* Replace with a faded color of your brand */
+        background:  $foundationColors.CalloutBg;
+        color:  $foundationColors.Callout;
+    }
+
+    th.callout-inner.primary {
+        background:  $foundationColors.HeaderBg;
+        color:  $foundationColors.Header;
+        border-color:  $foundationColors.HeaderBorder;
+    }
+    th.callout-inner.primary a {
+        color:  $foundationColors.HeaderLink;
     }
 </style>
