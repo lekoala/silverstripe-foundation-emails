@@ -13,7 +13,7 @@ en:
   WelcomeEmail:
     DEFAULT_TEXT: 'We''re really happy to have you! If you have any questions simply reply to this email and I''d be more than happy to chat. :)'
     HI: Hi
-    IFLINKFAILS: 'If the above link doesn\''t work, please copy and paste the line below into your browser\''s navigation bar'
+    IFLINKFAILS: 'If the above link doesn''t work, please copy and paste the line below into your browser''s navigation bar'
     PLEASEVALIDATE: 'To login on our website, please'
     SUBJECT: 'Welcome to {Website}'
     VALIDATELINK: 'validate your email address'
