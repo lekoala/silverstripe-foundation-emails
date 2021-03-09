@@ -197,14 +197,16 @@ class EmailViewerTask extends BuildTask
      */
     protected function inlineContent($body)
     {
-        if (!class_exists("\\Pelago\\Emogrifier")) {
+        if (!class_exists(\Pelago\Emogrifier\CssInliner::class)) {
             throw new Exception("You must run composer require pelago/emogrifier");
         }
-        $emogrifier = new \Pelago\Emogrifier();
-        $emogrifier->setHtml($body);
-        $emogrifier->disableInvisibleNodeRemoval();
-        $emogrifier->enableCssToHtmlMapping();
-        return $emogrifier->emogrify();
+        $domDocument = \Pelago\Emogrifier\CssInliner::fromHtml($body)->inlineCss()->getDomDocument();
+
+        \Pelago\Emogrifier\HtmlProcessor\HtmlPruner::fromDomDocument($domDocument)->removeElementsWithDisplayNone();
+        $html = \Pelago\Emogrifier\HtmlProcessor\CssToAttributeConverter::fromDomDocument($domDocument)
+            ->convertCssToVisualAttributes()->render();
+
+        return $html;
     }
 
     /**
