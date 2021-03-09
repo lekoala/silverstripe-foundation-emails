@@ -61,7 +61,7 @@ class EmailViewerTask extends BuildTask
         }
 
         if ($force_theme) {
-            Config::inst()->update(FoundationEmails::class, 'theme', $force_theme);
+            Config::modify()->set(FoundationEmails::class, 'theme', $force_theme);
         }
         if ($locale) {
             i18n::set_locale($locale);
@@ -172,7 +172,7 @@ class EmailViewerTask extends BuildTask
                 $result = $e->send();
                 echo '<hr/>';
                 if ($result) {
-                    echo '<span style="color:green">Email sent</span>';
+                    echo '<span style="color:green">Email sent : ' . json_encode($result) . '</span>';
                 } else {
                     echo '<span style="color:red">Failed to send email</span>';
                 }
