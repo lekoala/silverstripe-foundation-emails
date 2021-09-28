@@ -10,14 +10,15 @@
         "cms"
     ],
     "license": "MIT",
-    "authors": [{
-        "name": "LeKoala",
-        "email": "thomas@lekoala.be"
-    }],
+    "authors": [
+        {
+            "name": "LeKoala",
+            "email": "thomas@lekoala.be"
+        }
+    ],
     "require": {
         "php": "~7",
-        "silverstripe/framework": "^4",
-        "lorenzo/pinky": "^1.0"
+        "silverstripe/framework": "^4"
     },
     "extra": {
         "installer-name": "foundation-emails",
