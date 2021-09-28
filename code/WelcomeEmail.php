@@ -1,6 +1,5 @@
 <?php
 
-use SilverStripe\View\ArrayData;
 use SilverStripe\Security\Member;
 use SilverStripe\Control\Director;
 use SilverStripe\Control\Email\Email;

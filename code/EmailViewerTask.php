@@ -6,7 +6,6 @@ use SilverStripe\i18n\i18n;
 use SilverStripe\Assets\Image;
 use SilverStripe\Dev\BuildTask;
 use SilverStripe\ORM\ArrayList;
-use SilverStripe\View\SSViewer;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Member;

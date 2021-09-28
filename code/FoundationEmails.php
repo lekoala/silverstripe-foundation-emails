@@ -243,31 +243,7 @@ class FoundationEmails implements TemplateGlobalProvider
      */
     public static function inky($markup)
     {
-        $inky = self::getInky();
-
-        $inky->releaseTheKraken($markup);
-
-        return $inky;
-    }
-
-    /**
-     * Get a configured Inky instance
-     *
-     * @return Hampe\Inky\Inky
-     */
-    public static function getInky()
-    {
-        $gridColumns = self::config()->grid;
-        $additionalComponentFactories = self::config()->components;
-        $aliases = self::config()->aliases;
-
-        $inky = new Hampe\Inky\Inky($gridColumns);
-        foreach ($additionalComponentFactories as $additionalComponentFactory) {
-            $inky->addComponentFactory(new $additionalComponentFactory());
-        }
-        foreach ($aliases as $name => $value) {
-            $inky->addAlias($name, $value);
-        }
-        return $inky;
+        $transpiled = \Pinky\transformString($markup);
+        return $transpiled->saveHTML();
     }
 }

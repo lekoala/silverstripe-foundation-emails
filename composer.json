@@ -16,7 +16,8 @@
     }],
     "require": {
         "php": "~7",
-        "silverstripe/framework": "^4"
+        "silverstripe/framework": "^4",
+        "lorenzo/pinky": "^1.0"
     },
     "extra": {
         "installer-name": "foundation-emails",
@@ -25,7 +26,7 @@
         ]
     },
     "suggest": {
-        "hampe/inky": "Use Inky for your html emails",
+        "lorenzo/pinky": "Use Inky for your html emails",
         "pelago/emogrifier": "Inline styles for your emails",
         "lekoala/silverstripe-sparkpost": "Use SparkPost to send your emails",
         "lekoala/silverstripe-email-templates": "Email templates editables from the cms"
