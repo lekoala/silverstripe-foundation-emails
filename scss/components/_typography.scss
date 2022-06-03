@@ -1,6 +1,7 @@
 // Foundation for Emails by ZURB
 // zurb.com/ink/
 // Licensed under MIT Open Source
+@use "sass:math";
 
 ////
 /// @group typography
@@ -81,6 +82,10 @@ $small-font-size: 80% !default;
 /// Color of `<small>` elements when placed inside headers.
 /// @type Color
 $small-font-color: $medium-gray !default;
+
+/// Default scaling coefficient for text sizes.
+/// @type Number
+$font-scale: 1.2 !default;
 
 /// Font size of lead paragraphs.
 /// @type Number
@@ -163,7 +168,7 @@ $remove-ios-blue: true !default;
 /// @param {String} $width  - Width of divider
 /// @param {String} $border - Shorthand border style for divider
 /// @param {String} $margin - Margin above and below divider
-@mixin h-line($align: $hr-align, $width: $hr-width, $border: $hr-border, $margin: nth($hr-margin, 1)) {
+@mixin h-line($align: $hr-align, $width: $hr-width, $border: $hr-border, $margin: $hr-margin) {
   @at-root {
     td.columns & table,
     td.column  & table,
@@ -177,7 +182,7 @@ $remove-ios-blue: true !default;
     padding-bottom: $margin;
     @if $align == 'left' {
       text-align: left;
-    } @elseif $align == 'right' {
+    } @else if $align == 'right' {
       text-align: right;
     } @else {
       text-align: center;
@@ -190,7 +195,7 @@ $remove-ios-blue: true !default;
       Margin: 0;
     }
 
-      td {
+      th {
         width: $width;
         height: 0;
         padding-top: $margin;
@@ -218,10 +223,7 @@ th {
   color: $global-font-color;
   font-family: $body-font-family;
   font-weight: $global-font-weight;
-  padding-top: 0;
-  padding-right: 0;
-  padding-bottom: 0;
-  padding-left: 0;
+  padding: 0;
   margin: 0;
   Margin: 0;
   text-align: left;
@@ -293,9 +295,34 @@ p {
     line-height: $subheader-lineheight;
     color: $subheader-color;
   }
+
+  a { // To fix Outlook margin issue #421
+    margin: default;
+    Margin: default;
+  }
 }
 
-small
+.text-xs {
+  font-size: math.div($global-font-size, $font-scale * $font-scale);
+}
+
+.text-sm {
+  font-size: math.div($global-font-size, $font-scale);
+}
+
+.text-lg {
+  font-size: $global-font-size * $font-scale;
+}
+
+.text-xl {
+  font-size: $global-font-size * ($font-scale * $font-scale);
+}
+
+.text-xxl {
+  font-size: $global-font-size * ($font-scale * $font-scale * $font-scale);
+}
+
+small,
 .small {
   font-size: $small-font-size;
   color: $small-font-color;
