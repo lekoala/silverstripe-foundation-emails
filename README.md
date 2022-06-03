@@ -2,7 +2,7 @@
 
 Replace the default html template by one made with [Foundation Emails] (http://foundation.zurb.com/emails/docs/css-guide.html).
 
-The email templates use zurb/foundation-emails (v 2.2.1) to provide a consistent markup.
+The email templates use [zurb/foundation-emails](https://github.com/foundation/foundation-emails) to provide a consistent markup.
 
 # Expanded generic emails
 
@@ -12,13 +12,15 @@ The generic email comes with a few new options:
 -   If you define a Sidebar, a right sidebar will be displayed (ratio 7/5)
 -   If you define a HeroImage (an Image object), it will be displayed below the body and before the callout
 
-    $email = new Email();
-    $email->addData([
-    'EmailContent' => 'Here is my body',
-    'Callout' => 'Here is my callout',
-    'Sidebar' => 'Here is my sidebar',
-    'HeroImage' => Image::get()->first()
-    ]);
+```php
+$email = new Email();
+$email->addData([
+'EmailContent' => 'Here is my body',
+'Callout' => 'Here is my callout',
+'Sidebar' => 'Here is my sidebar',
+'HeroImage' => Image::get()->first()
+]);
+```
 
 A default Header and Footer is provided:
 
@@ -36,14 +38,16 @@ Instead, rely on addData(['EmailContent' => $body]).
 Instead of relying on specific markup, you can also use template helpers directly
 in your email templates. For instance:
 
-    $email = new Email();
-    $viewer = new SSViewer('MyEmailTemplate');
-    $result = $viewer->process($this);
-    $email->addData(['EmailContent' => (string) $result]);
+```php
+$email = new Email();
+$viewer = new SSViewer('MyEmailTemplate');
+$result = $viewer->process($this);
+$email->addData(['EmailContent' => (string) $result]);
 
-    Dear Customer,<br/><br/>
-    Please find your password reset link:<br/><br/>
-    $FoundationButton('Reset your passowrd', $PasswordResetLink)
+Dear Customer,<br/><br/>
+Please find your password reset link:<br/><br/>
+$FoundationButton('Reset your passowrd', $PasswordResetLink)
+```
 
 Available helpers are:
 
@@ -64,11 +68,14 @@ To define your own headers and footers, override FoundationEmailFooter and Found
 Two other styles are provided : "vision" and "ceej". Feel free to use the one you like the most.
 You can select your theme by applying the following config.
 
+```yml
     FoundationEmails:
       theme: 'vision'
+```
 
 You can also edit basic color or use extension point "updateFoundationColors".
 
+```yml
     FoundationEmails:
         colors:
             HeaderBg: '#333'
@@ -79,6 +86,7 @@ You can also edit basic color or use extension point "updateFoundationColors".
             Callout : '#ddd'
             BtnBg : '#333'
             Btn : '#fff'
+```
 
 # Consistent ChangePassword and ForgotPassword templates
 
