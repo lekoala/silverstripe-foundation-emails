@@ -32,6 +32,13 @@
         "lekoala/silverstripe-sparkpost": "Use SparkPost to send your emails",
         "lekoala/silverstripe-email-templates": "Email templates editables from the cms"
     },
+    "config": {
+        "allow-plugins": {
+            "composer/installers": true,
+            "silverstripe/recipe-plugin": true,
+            "silverstripe/vendor-plugin": true
+        }
+    },
     "support": {
         "issues": "https://github.com/lekoala/silverstripe-foundation-emails/issues"
     }
