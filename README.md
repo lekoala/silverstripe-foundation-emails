@@ -69,23 +69,23 @@ Two other styles are provided : "vision" and "ceej". Feel free to use the one yo
 You can select your theme by applying the following config.
 
 ```yml
-    FoundationEmails:
-      theme: 'vision'
+FoundationEmails:
+    theme: "vision"
 ```
 
 You can also edit basic color or use extension point "updateFoundationColors".
 
 ```yml
-    FoundationEmails:
-        colors:
-            HeaderBg: '#333'
-            Header: '#fff'
-            Link: '#2199e8'
-            Background : '#f3f3f3'
-            CalloutBg : '#ddd'
-            Callout : '#ddd'
-            BtnBg : '#333'
-            Btn : '#fff'
+FoundationEmails:
+    colors:
+        HeaderBg: "#333"
+        Header: "#fff"
+        Link: "#2199e8"
+        Background: "#f3f3f3"
+        CalloutBg: "#ddd"
+        Callout: "#ddd"
+        BtnBg: "#333"
+        Btn: "#fff"
 ```
 
 # Consistent ChangePassword and ForgotPassword templates

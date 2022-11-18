@@ -27,24 +27,35 @@ class FoundationEmails implements TemplateGlobalProvider
      */
     public static function get_template_global_variables()
     {
-        return array(
-            'FoundationSpacer' => array(
+        return [
+            'FoundationSpacer' => [
                 'method' => 'spacer',
                 'casting' => 'HTMLText',
-            ),
-            'FoundationButton' => array(
+            ],
+            'FoundationButton' => [
                 'method' => 'button',
                 'casting' => 'HTMLText',
-            ),
-            'FoundationCallout' => array(
+            ],
+            'FoundationCallout' => [
                 'method' => 'callout',
                 'casting' => 'HTMLText',
-            ),
-            'FoundationContainer' => array(
+            ],
+            'FoundationContainer' => [
                 'method' => 'container',
                 'casting' => 'HTMLText',
-            ),
-        );
+            ],
+            'FoundationBaseEmailStyles' => [
+                'method' => 'email_styles',
+                'casting' => 'HTMLText',
+            ],
+        ];
+    }
+
+    public static function email_styles()
+    {
+        $base = dirname(__DIR__);
+        $styles = file_get_contents($base . '/css/foundation-emails.min.css');
+        return $styles;
     }
 
     /**
@@ -65,7 +76,7 @@ class FoundationEmails implements TemplateGlobalProvider
      * @link http://foundation.zurb.com/emails/docs/button.html
      * @param string $text
      * @param string $href
-     * @param string $tableClass tiny|small|large|expanded|secondary|success|warning|alert|radius|rounded
+     * @param string $tableClass tiny|small|large|expanded|centered|secondary|success|warning|alert|radius|rounded
      * @param string $btnClasses
      * @return string
      */
@@ -81,6 +92,10 @@ class FoundationEmails implements TemplateGlobalProvider
         $isExpanded = false;
         if (strpos($tableClass, 'expand') !== false) {
             $isExpanded = true;
+        }
+        $isCentered = false;
+        if (strpos($tableClass, 'center') !== false) {
+            $isCentered = true;
         }
         $buttonStart = '<table class="button' . $tableClass . '">
           <tr>
@@ -103,8 +118,12 @@ class FoundationEmails implements TemplateGlobalProvider
         }
 
         $a = '<a href="' . $href . '" classes="' . $btnClasses . '">' . $text . '</a>';
+        $button = $buttonStart . $a . $buttonEnd;
+        if ($isCentered) {
+            $button = '<center>' . $button . '</center>';
+        }
 
-        return $buttonStart . $a . $buttonEnd;
+        return $button;
     }
 
     /**
@@ -123,7 +142,7 @@ class FoundationEmails implements TemplateGlobalProvider
         return '<table class="callout">
   <tr>
     <th class="callout-inner' . $calloutClass . '">
-      <p>Successfully avoided Kraken. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.</p>
+      ' . $content . '
     </th>
     <th class="expander"></th>
   </tr>
