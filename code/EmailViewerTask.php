@@ -101,14 +101,14 @@ class EmailViewerTask extends BuildTask
         $args = [];
 
         if (!empty($constructorOpts)) {
-            /* @var $opt ReflectionParameter  */
+            /** @var ReflectionParameter $opt */
             foreach ($constructorOpts as $opt) {
-                $cl = $opt->getClass();
+                $cl = self::getReflectionClass($opt);
                 if (!$cl) {
                     continue;
                 }
+                $type = $cl->getName();
                 // We can inject DataObject as parameters
-                $type = $opt->getClass()->getName();
                 if (class_exists($type) && in_array(
                     $type,
                     ClassInfo::subclassesFor(DataObject::class)
@@ -128,7 +128,7 @@ class EmailViewerTask extends BuildTask
             }
         }
 
-        /* @var $e Email */
+        /** @var Email $e */
         $e = $refl->newInstanceArgs($args);
 
         if ($template) {
@@ -285,5 +285,17 @@ class EmailViewerTask extends BuildTask
         $e->addData($data);
 
         return $e;
+    }
+
+    /**
+     * @link https://php.watch/versions/8.0/deprecated-reflectionparameter-methods#getClass
+     * @param ReflectionParameter $param
+     * @return ReflectionClass|null
+     */
+    public static function getReflectionClass(ReflectionParameter $param)
+    {
+        return $param->getType() && !$param->getType()->isBuiltin()
+            ? new ReflectionClass($param->getType()->getName())
+            : null;
     }
 }
