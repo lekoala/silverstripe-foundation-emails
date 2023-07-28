@@ -294,8 +294,14 @@ class EmailViewerTask extends BuildTask
      */
     public static function getReflectionClass(ReflectionParameter $param)
     {
-        return $param->getType() && !$param->getType()->isBuiltin()
-            ? new ReflectionClass($param->getType()->getName())
-            : null;
+        $c = $param->getType();
+        $isClass = false;
+        if ($c instanceof ReflectionNamedType) {
+            $isClass = !$c->isBuiltin();
+        }
+        if (!$isClass) {
+            return null;
+        }
+        return new ReflectionClass($c->getName());
     }
 }

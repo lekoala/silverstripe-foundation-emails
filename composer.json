@@ -17,8 +17,10 @@
         }
     ],
     "require": {
-        "php": "~7",
-        "silverstripe/framework": "^4"
+        "php": "^7.4 || ^8",
+        "silverstripe/recipe-plugin": "^1 || ^2",
+        "silverstripe/vendor-plugin": "^1 || ^2",
+        "silverstripe/framework": "^4.6 || ^5"
     },
     "extra": {
         "installer-name": "foundation-emails",
