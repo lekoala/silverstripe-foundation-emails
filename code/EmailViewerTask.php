@@ -9,6 +9,7 @@ use SilverStripe\ORM\ArrayList;
 use SilverStripe\Core\ClassInfo;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Security\Member;
+use SilverStripe\Security\Security;
 use SilverStripe\Core\Config\Config;
 use SilverStripe\Control\Email\Email;
 use SilverStripe\Control\HTTPRequest;
@@ -144,25 +145,22 @@ class EmailViewerTask extends BuildTask
 
         // Inject a member
         if (!$member) {
-            if (Member::currentUserID()) {
-                $member = Member::currentUser();
-            } else {
-                $member = Member::get()->sort('RAND()')->first();
+            $member = Security::getCurrentUser();
+            if (!$member) {
+                $member = Member::get()->orderBy('RAND()')->first();
             }
         }
         if ($member) {
             $e->addData($member->toMap());
         }
 
-        // Call debug to trigger parseVariables
-        $debugData = $e->debug();
-
+        $body = $e->getHtmlBody() ?? "";
         if ($inline) {
             // We can use setBody because template has been applied
-            $body = $this->inlineContent($e->body);
+            $body = $this->inlineContent($body);
             $e->setBody($body);
         } else {
-            $body = $e->body;
+            $body = $body;
         }
 
         if ($member && $to) {
@@ -180,7 +178,7 @@ class EmailViewerTask extends BuildTask
             }
         }
 
-        echo '<hr/><center>Subject : ' . $e->subject . '</center>';
+        echo '<hr/><center>Subject : ' . $e->getSubject() . '</center>';
         echo '<hr/>';
         echo $body;
         echo '<hr/><pre style="font-size:12px;line-height:12px;">';
@@ -222,7 +220,7 @@ class EmailViewerTask extends BuildTask
         // Do not use SetBody as it will prevent template usage
         $e->addData('EmailContent', $body);
 
-        $image = Image::get()->sort('RAND()')->first();
+        $image = Image::get()->orderBy('RAND()')->first();
 
         $data = [
             'PreHeader' => 'This text is only visible in your email client...',
