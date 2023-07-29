@@ -44,7 +44,8 @@ class EmailViewerTask extends BuildTask
         $force_theme = $request->getVar('force_theme');
 
         if (!$email) {
-            $emailClasses = ClassInfo::subclassesFor(Email::class);
+            // Pending fix: https://github.com/silverstripe/silverstripe-framework/issues/10892
+            $emailClasses = ClassInfo::subclassesFor(SilverStripe\Control\Email\Email::class);
             DB::alteration_message("Please select an email to test or preview");
             foreach ($emailClasses as $class) {
                 $link = '/dev/tasks/EmailViewerTask?email=' . urlencode($class);
