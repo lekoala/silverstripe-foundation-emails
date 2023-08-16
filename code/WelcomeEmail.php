@@ -16,8 +16,13 @@ class WelcomeEmail extends Email
 {
     protected $ss_template = "WelcomeEmail";
 
+    /**
+     * @param Member $member
+     */
     public function __construct($member = null)
     {
+        parent::__construct();
+
         $member = $member ? $member : Security::getCurrentUser();
 
         $link = Director::absoluteBaseUrl();
@@ -38,8 +43,6 @@ class WelcomeEmail extends Email
             }
             $this->setTo($to);
         }
-
-        parent::__construct();
 
         $this->setData([
             'Member' => $member,
