@@ -155,6 +155,7 @@ class EmailViewerTask extends BuildTask
             $e->addData($member->toMap());
         }
 
+        $e->foundationRender(); // render template to html
         $body = $e->getHtmlBody() ?? "";
         if ($inline) {
             // We can use setBody because template has been applied

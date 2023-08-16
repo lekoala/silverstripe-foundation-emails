@@ -2,25 +2,16 @@
 
 use SilverStripe\Core\Extension;
 use SilverStripe\View\ArrayData;
+use SilverStripe\View\ViewableData;
 
 class FoundationEmailExtension extends Extension
 {
-    /**
-     * Keep scope without having to pass variables to includes
-     *
-     * Use configured theme if any
-     *
-     * @param string $template
-     * @return string
-     */
-    public function foundationTemplate($template)
+    public function updateGetData(ViewableData $data)
     {
-        $theme = FoundationEmails::config()->theme;
-        $templates = ['Includes/' . $template];
-        if ($theme && $theme != 'none') {
-            array_unshift($templates, 'Includes/' . $template . '_' . $theme);
-        }
-        return $this->owner->renderWith($templates, $this->owner->getData());
+        // Since methods are not callable anymore, pass them to data
+        $data->foundationColors = $this->foundationColors();
+        // Since we cannot set methods, add a custom failover
+        $data->setFailover(new FoundationViewableData($this->owner));
     }
 
     /**
@@ -31,5 +22,12 @@ class FoundationEmailExtension extends Extension
         $colors = FoundationEmails::config()->colors;
         $this->owner->extend('updateFoundationColors', $colors);
         return new ArrayData($colors);
+    }
+
+    public function foundationRender()
+    {
+        $reflectionMethod = new ReflectionMethod($this->owner, 'updateHtmlAndTextWithRenderedTemplates');
+        $reflectionMethod->setAccessible(true);
+        $reflectionMethod->invoke($this->owner);
     }
 }
