@@ -22,12 +22,22 @@ use SilverStripe\SiteConfig\SiteConfig;
  */
 class EmailViewerTask extends BuildTask
 {
+    /**
+     * @var string
+     */
     private static $segment = 'EmailViewerTask';
 
     const FORGOT_PASSWORD_TEMPLATE = 'SilverStripe\\Control\\Email\\ForgotPasswordEmail';
     const CHANGE_PASSWORD_TEMPLATE = 'SilverStripe\\Control\\Email\\ChangePasswordEmail';
 
+    /**
+     * @var string
+     */
     protected $title = "Email Viewer";
+
+    /**
+     * @var string
+     */
     protected $description = 'Helps you previewing and testing emails';
 
     /**
@@ -168,7 +178,13 @@ class EmailViewerTask extends BuildTask
         if ($member && $to) {
             try {
                 $e->setTo($member->Email, $member->getTitle());
-                $result = $e->send();
+                try {
+                    $e->send();
+                    $result = true;
+                } catch (Exception $e) {
+                    $result = false;
+                }
+
                 echo '<hr/>';
                 if ($result) {
                     echo '<span style="color:green">Email sent : ' . json_encode($result) . '</span>';

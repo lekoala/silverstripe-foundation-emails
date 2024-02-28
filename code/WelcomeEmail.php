@@ -14,6 +14,9 @@ use SilverStripe\SiteConfig\SiteConfig;
  */
 class WelcomeEmail extends Email
 {
+    /**
+     * @var string
+     */
     protected $ss_template = "WelcomeEmail";
 
     /**
